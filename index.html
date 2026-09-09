@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IBKR Portfolio Analyzer</title>
+    <title>Analyseur Portefeuille IBKR - 100% Local [DEV]</title>
     <style>
         * {
             margin: 0;
@@ -11,64 +11,73 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: #333; 
+            background-color: #f8f9fa;
+            height: 100vh;
             overflow: hidden;
-        }
-
-        .dev-banner {
-            background: #ff6b6b;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .container {
             display: flex;
-            height: calc(100vh - 40px);
         }
 
-        /* SIDEBAR */
+        /* ==========================================
+           BANNIÈRE DEV
+           ========================================== */
+        .dev-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-weight: 600;
+            z-index: 9999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        body { padding-top: 45px; }
+
+        /* ==========================================
+           SIDEBAR GAUCHE (15%)
+           ========================================== */
+
         .sidebar {
             width: 15%;
-            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: white;
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 45px);
             overflow-y: auto;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+            box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+            position: fixed;
+            left: 0;
+            top: 45px;
         }
 
-        .sidebar h2 {
+        .sidebar-header {
+            padding: 20px 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .sidebar-header h2 {
             font-size: 16px;
-            margin-bottom: 20px;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-weight: 700;
+            margin-bottom: 5px;
         }
 
-        .nav-item {
-            padding: 12px 15px;
-            margin-bottom: 8px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 13px;
-            border-left: 3px solid transparent;
+        .sidebar-header p {
+            font-size: 12px;
+            color: #cbd5e1;
         }
 
-        .nav-item:hover {
-            background: rgba(255,255,255,0.1);
-            border-left-color: #667eea;
-        }
-
-        .nav-item.active {
-            background: #667eea;
-            border-left-color: #667eea;
-            font-weight: 600;
+        .sidebar-nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 0;
         }
 
         .nav-section {
@@ -77,51 +86,90 @@
 
         .nav-section-title {
             font-size: 11px;
-            color: #64748b;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            color: #94a3b8;
+            padding: 0 15px;
             margin-bottom: 10px;
-            margin-top: 15px;
+            letter-spacing: 0.5px;
         }
 
-        /* MAIN CONTENT */
+        .nav-item {
+            padding: 12px 15px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .nav-item.active {
+            background: rgba(37, 99, 235, 0.2);
+            border-left-color: #2563eb;
+            color: #60a5fa;
+        }
+
+        .sidebar-footer {
+            padding: 20px 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 13px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            cursor: pointer;
+        }
+
+        /* ==========================================
+           CONTENU DROIT (85%)
+           ========================================== */
+
         .main-content {
-            flex: 1;
+            margin-left: 15%;
+            width: 85%;
+            height: calc(100vh - 45px);
+            overflow-y: auto;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
         }
 
         .header {
-            background: white;
-            padding: 25px 30px;
-            border-bottom: 1px solid #e2e8f0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
         }
 
         .header h1 {
             font-size: 28px;
-            color: #1e293b;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         .header p {
-            color: #64748b;
             font-size: 14px;
+            opacity: 0.9;
         }
 
         .content {
             flex: 1;
-            overflow-y: auto;
             padding: 30px;
-        }
-
-        .view {
-            display: none;
-        }
-
-        .view.active {
-            display: block;
+            overflow-y: auto;
         }
 
         .card {
@@ -130,101 +178,84 @@
             padding: 25px;
             margin-bottom: 20px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
         }
 
-        .card h3 {
-            font-size: 18px;
-            color: #1e293b;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        h3 { 
+            color: #334155; 
+            margin-top: 0; 
+            margin-bottom: 15px; 
         }
 
-        input[type="file"] {
-            display: block;
-            margin-bottom: 15px;
-            padding: 10px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            width: 100%;
-            cursor: pointer;
-        }
-
-        .btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .btn { 
+            background: #2563eb; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-weight: 600; 
             margin-right: 10px;
             margin-bottom: 10px;
+            transition: background 0.2s;
         }
 
-        .btn:hover {
-            background: #5568d3;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        .btn:hover { background: #1d4ed8; }
+        .btn.danger { background: #dc2626; }
+        .btn.danger:hover { background: #991b1b; }
+        .btn.success { background: #16a34a; }
+        .btn.success:hover { background: #15803d; }
+
+        input[type="file"] {
+            margin-bottom: 15px;
+            display: block;
         }
 
-        .btn.success {
-            background: #10b981;
+        select { 
+            padding: 10px; 
+            border-radius: 6px; 
+            border: 1px solid #cbd5e1; 
+            width: 100%; 
+            max-width: 400px; 
+            font-size: 15px; 
+            margin-bottom: 20px; 
         }
 
-        .btn.success:hover {
-            background: #059669;
-        }
-
-        .btn.danger {
-            background: #ef4444;
-        }
-
-        .btn.danger:hover {
-            background: #dc2626;
-        }
-
-        .alert {
+        .alert { 
             padding: 15px;
             border-radius: 8px;
+            margin-top: 15px;
             font-size: 14px;
-            margin-bottom: 15px;
             border-left: 4px solid;
         }
 
         .alert.info {
-            background: #dbeafe;
-            color: #1e40af;
-            border-left-color: #3b82f6;
+            background: #e0f2fe;
+            border-left-color: #0284c7;
+            color: #0c4a6e;
         }
 
         .alert.success {
             background: #dcfce7;
+            border-left-color: #16a34a;
             color: #166534;
-            border-left-color: #10b981;
         }
 
         .alert.error {
             background: #fee2e2;
+            border-left-color: #dc2626;
             color: #991b1b;
-            border-left-color: #ef4444;
         }
 
         .alert.warning {
             background: #fef3c7;
-            color: #92400e;
             border-left-color: #f59e0b;
+            color: #92400e;
         }
 
-        /* TABLE */
         .table-container {
             overflow-x: auto;
             margin-top: 20px;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
         }
 
         table {
@@ -233,80 +264,62 @@
             font-size: 13px;
         }
 
-        thead {
+        table th {
             background: #f1f5f9;
-            font-weight: 600;
-            color: #1e293b;
-        }
-
-        th {
             padding: 12px;
             text-align: left;
+            font-weight: 600;
+            color: #475569;
             border-bottom: 2px solid #e2e8f0;
-            white-space: nowrap;
         }
 
-        td {
-            padding: 10px 12px;
+        table td {
+            padding: 12px;
             border-bottom: 1px solid #e2e8f0;
         }
 
-        tbody tr:hover {
-            background: #f8fafc;
+        table tr:hover {
+            background: #f9fafb;
         }
 
-        /* SELECT */
-        select {
-            padding: 10px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 14px;
-            width: 100%;
-            margin-bottom: 15px;
-            cursor: pointer;
-        }
-
-        select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        label {
-            display: block;
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
             font-weight: 600;
-            margin-bottom: 8px;
-            color: #1e293b;
         }
 
-        /* STATS GRID */
+        .badge.primary {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
-            margin-bottom: 20px;
+            margin-top: 15px;
         }
 
-        .stat-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
+        .stat-item {
+            background: #f8fafc;
+            padding: 15px;
             border-radius: 8px;
-            text-align: center;
-        }
-
-        .stat-card.alt {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-
-        .stat-value {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 5px;
+            border-left: 4px solid #2563eb;
         }
 
         .stat-label {
-            font-size: 13px;
-            opacity: 0.9;
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-top: 5px;
         }
 
         /* Modal */
@@ -352,6 +365,7 @@
             gap: 10px;
             justify-content: flex-end;
         }
+    
     </style>
 </head>
 <body>
@@ -361,222 +375,320 @@
         <a href="https://github.com/Quasar-Nebulus/IBKR-Portfolio-Analyzer-DEV" style="color: white; text-decoration: underline;">Voir sur GitHub</a>
     </div>
 
-    <!-- CONTAINER -->
-    <div class="container">
-        <!-- SIDEBAR -->
-        <div class="sidebar">
-            <h2>Menu</h2>
-            
+    <!-- ==========================================
+         SIDEBAR GAUCHE (15%)
+         ========================================== -->
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>🧪 IBKR DEV</h2>
+            <p>v1.0 - Version Test</p>
+        </div>
+
+        <div class="sidebar-nav">
+            <!-- Section Données -->
             <div class="nav-section">
-                <div class="nav-section-title">Données</div>
-                <div class="nav-item active" onclick="afficherVue('import')">📥 Importer</div>
-                <div class="nav-item" onclick="afficherVue('explorer')">🔍 Explorer</div>
+                <div class="nav-section-title">📥 Données</div>
+                <div class="nav-item active" onclick="afficherVue('import')">
+                    <span>📂</span> Importer CSV
+                </div>
+                <div class="nav-item" onclick="afficherVue('explorer')">
+                    <span>🔍</span> Explorer
+                </div>
             </div>
 
+            <!-- Section Analyse -->
             <div class="nav-section">
-                <div class="nav-section-title">Analyse</div>
-                <div class="nav-item" onclick="afficherVue('stats')">📊 Statistiques</div>
-                <div class="nav-item" onclick="afficherVue('roulements')">🔄 Roulements</div>
+                <div class="nav-section-title">📈 Analyse</div>
+                <div class="nav-item" onclick="afficherVue('stats')">
+                    <span>📊</span> Statistiques
+                </div>
+                <div class="nav-item" onclick="afficherVue('roulements')">
+                    <span>🔄</span> Roulements
+                </div>
             </div>
 
+            <!-- Section Fiscalité -->
             <div class="nav-section">
-                <div class="nav-section-title">Fiscal</div>
-                <div class="nav-item" onclick="afficherVue('ifu')">📋 IFU</div>
-                <div class="nav-item" onclick="afficherVue('usa-tax')">🇺🇸 Retenues USA</div>
+                <div class="nav-section-title">🏛️ Fiscalité</div>
+                <div class="nav-item" onclick="afficherVue('ifu')">
+                    <span>📋</span> Générer IFU
+                </div>
+                <div class="nav-item" onclick="afficherVue('usa-tax')">
+                    <span>🇺🇸</span> Retenues USA
+                </div>
             </div>
 
+            <!-- Section Paramètres -->
             <div class="nav-section">
-                <div class="nav-section-title">Outils</div>
-                <div class="nav-item" onclick="afficherVue('settings')">⚙️ Paramètres</div>
+                <div class="nav-section-title">⚙️ Paramètres</div>
+                <div class="nav-item" onclick="afficherVue('settings')">
+                    <span>⚙️</span> Paramètres
+                </div>
             </div>
         </div>
 
-        <!-- MAIN CONTENT -->
-        <div class="main-content">
-            <div class="header">
-                <h1 id="headerTitle">Importer vos données IBKR</h1>
-                <p id="headerSubtitle">Sélectionnez vos fichiers CSV exportés depuis Interactive Brokers</p>
+        <div class="sidebar-footer">
+            <div class="checkbox-group">
+                <input type="checkbox" id="debugMode" onchange="toggleDebug()">
+                <label for="debugMode">Debug</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="darkMode" onchange="toggleDarkMode()">
+                <label for="darkMode">Mode sombre</label>
+            </div>
+            <p style="margin-top: 15px; font-size: 11px;">
+                🔒 Vos données restent en local.<br>Aucun upload vers serveur.
+            </p>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         CONTENU DROIT (85%)
+         ========================================== -->
+
+    <div class="main-content">
+        <div class="header">
+            <h1 id="headerTitle">Importer vos données IBKR</h1>
+            <p id="headerSubtitle">Sélectionnez vos fichiers CSV exportés depuis Interactive Brokers</p>
+        </div>
+
+        <div class="content">
+
+            <!-- ========== VUE : IMPORT ========== -->
+            <div id="view-import" class="view active">
+                <div class="card">
+                    <h3>📥 Importer vos fichiers CSV IBKR</h3>
+                    <input type="file" id="fichiersInput" accept=".csv" multiple>
+                    <button class="btn" onclick="traiterFichiersMultiples()">📤 Consolider les données</button>
+                    <button class="btn success" onclick="chargerDupeDB()">↙️ Charger du stockage local</button>
+                    <div id="statutImport" class="alert info" style="display: none;"></div>
+                </div>
             </div>
 
-            <div class="content">
-                <!-- VUE : IMPORT -->
-                <div id="view-import" class="view active">
-                    <div class="card">
-                        <h3>📥 Importer vos fichiers CSV IBKR</h3>
-                        <input type="file" id="fichiersInput" accept=".csv" multiple>
-                        <button class="btn" onclick="traiterFichiersMultiples()">📤 Consolider les données</button>
-                        <button class="btn success" onclick="chargerDupeDB()">↙️ Charger du stockage local</button>
-                        <div id="statutImport" class="alert info" style="display: none;"></div>
+            <!-- ========== VUE : EXPLORER ========== -->
+            <div id="view-explorer" class="view" style="display: none;">
+                <div class="card">
+                    <h3>🔍 Explorer vos données par catégorie</h3>
+                    <label for="selectCategorie">Sélectionnez une catégorie :</label>
+                    <select id="selectCategorie" onchange="afficherDonneesCategorie()"></select>
+                    <div class="table-container">
+                        <table id="tableauDonnees">
+                            <thead id="enteteTableau"></thead>
+                            <tbody id="corpsTableau"></tbody>
+                        </table>
                     </div>
                 </div>
+            </div>
 
-                <!-- VUE : EXPLORER -->
-                <div id="view-explorer" class="view" style="display: none;">
-                    <div class="card">
-                        <h3>🔍 Explorer vos données par catégorie</h3>
-                        <label for="selectCategorie">Sélectionnez une catégorie :</label>
-                        <select id="selectCategorie" onchange="afficherDonneesCategorie()"></select>
-                        <div class="table-container">
-                            <table id="tableauDonnees">
-                                <thead id="enteteTableau"></thead>
-                                <tbody id="corpsTableau"></tbody>
-                            </table>
-                        </div>
-                    </div>
+            <!-- ========== VUE : STATISTIQUES ========== -->
+            <div id="view-stats" class="view" style="display: none;">
+                <div class="card">
+                    <h3>📊 Statistiques globales</h3>
+                    <div class="stats-grid" id="statsGrid"></div>
                 </div>
+                <div class="card">
+                    <h3>📅 Répartition par année</h3>
+                    <div id="statsYears" style="font-size: 14px; line-height: 1.8;"></div>
+                </div>
+                <div class="card">
+                    <h3>📊 Répartition par catégorie</h3>
+                    <div id="statsCategories" style="font-size: 14px; line-height: 1.8;"></div>
+                </div>
+            </div>
 
-                <!-- VUE : STATS -->
-                <div id="view-stats" class="view" style="display: none;">
-                    <div class="card">
-                        <h3>📊 Statistiques globales</h3>
-                        <div class="stats-grid" id="statsGrid"></div>
-                    </div>
-                    <div class="card">
-                        <h3>📅 Répartition par année</h3>
-                        <div id="statsYears" style="font-size: 14px; line-height: 1.8;"></div>
-                    </div>
-                    <div class="card">
-                        <h3>📊 Répartition par catégorie</h3>
-                        <div id="statsCategories" style="font-size: 14px; line-height: 1.8;"></div>
-                    </div>
+            <!-- ========== VUE : ROULEMENTS ========== -->
+            <div id="view-roulements" class="view" style="display: none;">
+                <div class="card">
+                    <h3>🔄 Détection des roulements d'options</h3>
+                    <div id="roulementsContent"></div>
                 </div>
+            </div>
 
-                <!-- AUTRES VUES (Placeholders) -->
-                <div id="view-roulements" class="view" style="display: none;">
-                    <div class="card">
-                        <h3>🔄 Roulements détectés</h3>
-                        <p>À développer...</p>
-                    </div>
+            <!-- ========== VUE : IFU ========== -->
+            <div id="view-ifu" class="view" style="display: none;">
+                <div class="card">
+                    <h3>📋 Générer un IFU (en développement)</h3>
+                    <p>Cette fonctionnalité sera disponible prochainement.</p>
                 </div>
+            </div>
 
-                <div id="view-ifu" class="view" style="display: none;">
-                    <div class="card">
-                        <h3>📋 Générer un IFU</h3>
-                        <p>À développer...</p>
-                    </div>
+            <!-- ========== VUE : RETENUES USA ========== -->
+            <div id="view-usa-tax" class="view" style="display: none;">
+                <div class="card">
+                    <h3>🇺🇸 Calcul des retenues fiscales USA (en développement)</h3>
+                    <p>Analyse des retenues d'impôt sur dividendes et intérêts.</p>
                 </div>
+            </div>
 
-                <div id="view-usa-tax" class="view" style="display: none;">
-                    <div class="card">
-                        <h3>🇺🇸 Retenues fiscales USA</h3>
-                        <p>À développer...</p>
-                    </div>
+            <!-- ========== VUE : PARAMÈTRES ========== -->
+            <div id="view-settings" class="view" style="display: none;">
+                <div class="card">
+                    <h3>⚙️ Paramètres</h3>
+                    <button class="btn danger" onclick="afficherModalSupprimer()">🗑️ Supprimer toutes les données</button>
+                    <button class="btn" onclick="exporterJSON()" style="background: #8b5cf6;">📥 Exporter en JSON</button>
+                    <div id="settingsInfo" style="margin-top: 20px; font-size: 14px;"></div>
                 </div>
+            </div>
 
-                <div id="view-settings" class="view" style="display: none;">
-                    <div class="card">
-                        <h3>⚙️ Paramètres</h3>
-                        <p>À développer...</p>
-                    </div>
-                </div>
+        </div>
+    </div>
+
+    <!-- MODAL SUPPRESSION -->
+    <div id="modalSupprimer" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">⚠️ Attention</div>
+            <div class="modal-body">
+                Êtes-vous absolument sûr de vouloir <strong>supprimer TOUTES les données</strong> stockées localement ?<br><br>
+                Cette action est <strong>irréversible</strong> et vous devrez réimporter vos fichiers CSV.
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="fermerModalSupprimer()">Annuler</button>
+                <button class="btn danger" onclick="validerSuppressionDonnees()">Oui, supprimer</button>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPT -->
     <script>
-        // ============ VARIABLES GLOBALES ============
-        let baseDonneesCategories = {};
-        const DB_NAME = 'IBKR_Portfolio_DB';
-        const STORE_NAME = 'transactions';
-
-        // Lignes à rattacher comme sous-totaux
-        const LIGNES_A_RATTACHER = [
-            "Total P/L for Statement Period",
-            "Total P/L for Period",
-            "P/L Total pour période relevé de compte",
-            "Net P/L",
-            "Total Dividends",
-            "Total Interest",
-            "Total Tax",
-            "Total Commissions",
-            "Total Fee"
-        ];
-
-        // ============ INDEXEDDB ============
-        const ibkrDb = {
-            db: null,
+        // ============ CLASSE IndexedDB ============
+        class IBKRDatabase {
+            constructor() {
+                this.db = null;
+            }
 
             async init() {
                 return new Promise((resolve, reject) => {
-                    const request = indexedDB.open(DB_NAME, 1);
+                    const request = indexedDB.open('IBKRPortfolio', 1);
+
                     request.onerror = () => reject(request.error);
                     request.onsuccess = () => {
                         this.db = request.result;
-                        resolve();
+                        resolve(this.db);
                     };
-                    request.onupgradeneeded = (e) => {
-                        const db = e.target.result;
-                        if (!db.objectStoreNames.contains(STORE_NAME)) {
-                            db.createObjectStore(STORE_NAME, { keyPath: 'id' });
+
+                    request.onupgradeneeded = (event) => {
+                        const db = event.target.result;
+                        
+                        if (!db.objectStoreNames.contains('transactions')) {
+                            const store = db.createObjectStore('transactions', { keyPath: 'id' });
+                            store.createIndex('date', 'date', { unique: false });
+                            store.createIndex('symbole', 'symbole', { unique: false });
+                            store.createIndex('categorie', 'categorie', { unique: false });
+                            store.createIndex('annee', 'annee', { unique: false });
+                        }
+
+                        if (!db.objectStoreNames.contains('metadata')) {
+                            db.createObjectStore('metadata', { keyPath: 'key' });
                         }
                     };
                 });
-            },
+            }
 
-            async put(storeName, data) {
-                const tx = this.db.transaction(storeName, 'readwrite');
-                const store = tx.objectStore(storeName);
-                return new Promise((resolve, reject) => {
-                    const req = store.put(data);
-                    req.onerror = () => reject(req.error);
-                    req.onsuccess = () => resolve();
-                });
-            },
-
-            async get(storeName, id) {
-                const tx = this.db.transaction(storeName, 'readonly');
-                const store = tx.objectStore(storeName);
-                return new Promise((resolve, reject) => {
-                    const req = store.get(id);
-                    req.onerror = () => reject(req.error);
-                    req.onsuccess = () => resolve(req.result);
-                });
-            },
+            getDb() {
+                return this.db;
+            }
 
             async getAll(storeName) {
-                const tx = this.db.transaction(storeName, 'readonly');
-                const store = tx.objectStore(storeName);
                 return new Promise((resolve, reject) => {
-                    const req = store.getAll();
-                    req.onerror = () => reject(req.error);
-                    req.onsuccess = () => resolve(req.result);
+                    const tx = this.db.transaction([storeName], 'readonly');
+                    const store = tx.objectStore(storeName);
+                    const request = store.getAll();
+                    request.onsuccess = () => resolve(request.result);
+                    request.onerror = () => reject(request.error);
                 });
             }
-        };
 
-        // ============ PARSING CSV IBKR ============
+            async get(storeName, key) {
+                return new Promise((resolve, reject) => {
+                    const tx = this.db.transaction([storeName], 'readonly');
+                    const store = tx.objectStore(storeName);
+                    const request = store.get(key);
+                    request.onsuccess = () => resolve(request.result);
+                    request.onerror = () => reject(request.error);
+                });
+            }
+
+            async put(storeName, obj) {
+                return new Promise((resolve, reject) => {
+                    const tx = this.db.transaction([storeName], 'readwrite');
+                    const store = tx.objectStore(storeName);
+                    const request = store.put(obj);
+                    request.onsuccess = () => resolve(request.result);
+                    request.onerror = () => reject(request.error);
+                });
+            }
+
+            async clear(storeName) {
+                return new Promise((resolve, reject) => {
+                    const tx = this.db.transaction([storeName], 'readwrite');
+                    const store = tx.objectStore(storeName);
+                    const request = store.clear();
+                    request.onsuccess = () => resolve();
+                    request.onerror = () => reject(request.error);
+                });
+            }
+
+            async deleteAllStores() {
+                return new Promise((resolve, reject) => {
+                    const storeNames = ['transactions', 'metadata'];
+                    let completed = 0;
+                    
+                    for (const storeName of storeNames) {
+                        const tx = this.db.transaction([storeName], 'readwrite');
+                        const store = tx.objectStore(storeName);
+                        const request = store.clear();
+                        request.onsuccess = () => {
+                            completed++;
+                            if (completed === storeNames.length) resolve();
+                        };
+                        request.onerror = () => reject(request.error);
+                    }
+                });
+            }
+        }
+
+        // ============ VARIABLES GLOBALES ============
+        let ibkrDb;
+        let baseDonneesCategories = {};
+        let relationsDetectees = { roulements: new Map(), ajustements: new Map() };
+
+        // ============ PARSEUR CSV ÉPROUVÉ IBKR ============
         /**
          * Parse une ligne CSV en gérant les guillemets échappés ("")
          * et en PRESERVANT les colonnes vides (,,)
-         * Code d'origine : Google Apps Script IBKR
+         * Version éprouvée du code Google Apps Script
          */
         function parseCSVLine(ligne) {
-            let resultat = [];
-            let champ = '';
-            let dansGuillemets = false;
+            var resultat = [];
+            var champ = '';
+            var dansGuillemets = false;
 
-            for (let i = 0; i < ligne.length; i++) {
-                let char = ligne.charAt(i);
+            for (var i = 0; i < ligne.length; i++) {
+                var char = ligne.charAt(i);
 
                 if (char === '"') {
+                    // Gestion des guillemets échappés ("")
                     if (dansGuillemets && ligne.charAt(i + 1) === '"') {
                         champ += '"';
-                        i++;
+                        i++; // Sauter le prochain guillemet
                     } else {
                         dansGuillemets = !dansGuillemets;
                     }
                 } else if (char === ',' && !dansGuillemets) {
+                    // Fin d'un champ, on l'ajoute au résultat (même s'il est vide)
                     resultat.push(champ);
                     champ = '';
                 } else {
+                    // On ajoute le caractère au champ en cours
                     champ += char;
                 }
             }
 
+            // Ne pas oublier le dernier champ de la ligne
             resultat.push(champ);
 
-            for (let j = 0; j < resultat.length; j++) {
+            // Nettoyage des espaces inutiles sur les bords de chaque champ
+            for (var j = 0; j < resultat.length; j++) {
                 resultat[j] = resultat[j].trim();
             }
 
@@ -584,175 +696,38 @@
         }
 
         /**
-         * Normalise une valeur : convertit les nombres US en vrais nombres
+         * Normalise une valeur cellule.
+         * Si la valeur est un nombre au format US (ex: 123.45 ou -0.05), 
+         * elle est convertie en nombre JS réel pour éviter les erreurs de formatage.
+         * Version éprouvée du code Google Apps Script
          */
         function normaliserValeur(valeur) {
+            // Si c'est déjà un nombre (cas rare venant du CSV qui est tout en texte), on le garde
             if (typeof valeur === 'number') return valeur;
+
+            // Si c'est vide ou nul, on renvoie une chaîne vide
             if (!valeur || valeur === '') return '';
 
-            let strVal = valeur.toString().trim();
+            var strVal = valeur.toString().trim();
 
-            // Regex pour nombres US : 1,234.56 ou 123.45
-            const regexNombreUS = /^[+-]?(\d{1,3}(,\d{3})*|\d+)(\.\d+)?$/;
+            // Regex pour identifier un nombre décimal strict :
+            // - Optionnellement un signe + ou -
+            // - Suivi de 1 à 3 chiffres
+            // - Suivi optionnellement de groupes de 3 chiffres séparés par une virgule (milliers US : 1,234.56)
+            // - Suivi optionnellement d'un point et de 1 ou plusieurs décimales (123.45)
+            var regexNombreUS = /^[+-]?(\d{1,3}(,\d{3})*|\d+)(\.\d+)?$/;
 
             if (regexNombreUS.test(strVal)) {
-                let nombreNettoye = strVal.replace(/,/g, '');
-                let nombre = parseFloat(nombreNettoye);
+                // On retire les éventuelles virgules de milliers (US) et on convertit en vrai nombre
+                var nombreNettoye = strVal.replace(/,/g, '');
+                var nombre = parseFloat(nombreNettoye);
+
+                // On renvoie le nombre réel (pas une chaîne de texte)
                 return isNaN(nombre) ? strVal : nombre;
             }
 
+            // Si ce n'est pas un nombre strict (date, texte, etc.), on renvoie tel quel
             return strVal;
-        }
-
-        // ============ CLE METIER ============
-        class CleMetierCalculator {
-            static async calculerCle(categorie, date, heure, symbole, montant, description) {
-                const input = `${categorie}|${date}|${heure}|${symbole}|${montant}|${description}`;
-                const encoder = new TextEncoder();
-                const data = encoder.encode(input);
-                const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-                const hashArray = Array.from(new Uint8Array(hashBuffer));
-                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-                return hashHex.substring(0, 16);
-            }
-        }
-
-        // ============ TRAITEMENT CSV ============
-        async function traiterFichiersMultiples() {
-            const input = document.getElementById('fichiersInput');
-            const statut = document.getElementById('statutImport');
-
-            if (input.files.length === 0) {
-                afficherAlerte("❌ Sélectionnez au moins un fichier CSV !", "error");
-                return;
-            }
-
-            await ibkrDb.init();
-            baseDonneesCategories = {};
-
-            const fichiersCSV = Array.from(input.files).sort((a, b) =>
-                a.name.localeCompare(b.name, "fr", { sensitivity: "base" })
-            );
-
-            let derniereCategorieValide = null;
-            let totalLignesTraitees = 0;
-
-            for (let fichier of fichiersCSV) {
-                const nomFichier = fichier.name;
-                const nomBase = nomFichier.replace(/\.csv$/i, '');
-                const contenu = await fichier.text();
-
-                // Normaliser les retours à la ligne
-                const lignesText = contenu.replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n');
-
-                for (let i = 0; i < lignesText.length; i++) {
-                    const ligneTexte = lignesText[i].trim();
-                    if (ligneTexte === '') continue;
-
-                    const cellules = parseCSVLine(ligneTexte);
-                    const categorieOriginale = cellules[0];
-                    const typeLigne = cellules[1] ? cellules[1].toLowerCase() : '';
-
-                    const estUnSousTotal = LIGNES_A_RATTACHER.indexOf(categorieOriginale) !== -1;
-                    let categorieCible = categorieOriginale;
-
-                    if (estUnSousTotal && derniereCategorieValide) {
-                        categorieCible = derniereCategorieValide;
-                    }
-
-                    // Détection des headers
-                    if (typeLigne === 'header') {
-                        if (!baseDonneesCategories[categorieCible]) {
-                            let enTete = ['Fichier Source'];
-                            for (let e = 0; e < cellules.length; e++) {
-                                enTete.push(cellules[e]);
-                            }
-                            baseDonneesCategories[categorieCible] = { enTete: enTete, lignes: [] };
-                        }
-                        derniereCategorieValide = categorieCible;
-                    } else {
-                        // Ligne de données
-                        if (!baseDonneesCategories[categorieCible]) {
-                            let enTeteDefaut = ['Fichier Source'];
-                            for (let e = 0; e < cellules.length; e++) {
-                                enTeteDefaut.push('Col ' + e);
-                            }
-                            baseDonneesCategories[categorieCible] = { enTete: enTeteDefaut, lignes: [] };
-                        }
-
-                        // Normaliser les valeurs
-                        let celluleNormalisees = [nomBase];
-                        for (let c = 0; c < cellules.length; c++) {
-                            celluleNormalisees.push(normaliserValeur(cellules[c]));
-                        }
-
-                        // Calculer clé métier pour éviter les doublons
-                        const cle = await CleMetierCalculator.calculerCle(
-                            categorieCible,
-                            cellules[0] || '',
-                            cellules[1] || '',
-                            cellules[2] || '',
-                            cellules[3] || '',
-                            ligneTexte
-                        );
-
-                        const existant = await ibkrDb.get(STORE_NAME, cle);
-                        if (!existant) {
-                            await ibkrDb.put(STORE_NAME, {
-                                id: cle,
-                                categorie: categorieCible,
-                                donnees: celluleNormalisees,
-                                dateImport: new Date().toISOString()
-                            });
-                            baseDonneesCategories[categorieCible].lignes.push(celluleNormalisees);
-                            totalLignesTraitees++;
-                        }
-
-                        if (!estUnSousTotal) {
-                            derniereCategorieValide = categorieCible;
-                        }
-                    }
-                }
-            }
-
-            // Afficher les catégories détectées
-            mettreAJourSelectCategories();
-            afficherAlerte(`✅ ${totalLignesTraitees} transactions importées !`, "success");
-            statut.style.display = 'block';
-            statut.innerHTML = `✅ <b>${fichiersCSV.length}</b> fichiers fusionnés - <b>${totalLignesTraitees}</b> lignes`;
-        }
-
-        // ============ AFFICHAGE DONNEES ============
-        function mettreAJourSelectCategories() {
-            const select = document.getElementById('selectCategorie');
-            select.innerHTML = '';
-
-            const categories = Object.keys(baseDonneesCategories).sort();
-            for (let cat of categories) {
-                const option = document.createElement('option');
-                option.value = cat;
-                option.textContent = `${cat} (${baseDonneesCategories[cat].lignes.length} lignes)`;
-                select.appendChild(option);
-            }
-        }
-
-        function afficherDonneesCategorie() {
-            const select = document.getElementById('selectCategorie');
-            const categorie = select.value;
-
-            if (!baseDonneesCategories[categorie]) return;
-
-            const { enTete, lignes } = baseDonneesCategories[categorie];
-            const thead = document.getElementById('enteteTableau');
-            const tbody = document.getElementById('corpsTableau');
-
-            // En-têtes
-            thead.innerHTML = '<tr>' + enTete.map(h => `<th>${h}</th>`).join('') + '</tr>';
-
-            // Données
-            tbody.innerHTML = lignes.map(ligne =>
-                '<tr>' + ligne.map(cell => `<td>${cell}</td>`).join('') + '</tr>'
-            ).join('');
         }
 
         // ============ UTILITAIRES ============
@@ -762,17 +737,11 @@
                 v.style.display = 'none';
             });
 
-            document.querySelectorAll('.nav-item').forEach(n => {
-                n.classList.remove('active');
-            });
-
             const viewElement = document.getElementById(`view-${viewName}`);
             if (viewElement) {
                 viewElement.classList.add('active');
                 viewElement.style.display = 'block';
             }
-
-            document.querySelector(`[onclick="afficherVue('${viewName}')"]`)?.classList.add('active');
 
             const titles = {
                 'import': ['📥 Importer vos données', 'Sélectionnez vos fichiers CSV exportés depuis Interactive Brokers'],
@@ -788,26 +757,322 @@
                 document.getElementById('headerTitle').textContent = titles[viewName][0];
                 document.getElementById('headerSubtitle').textContent = titles[viewName][1];
             }
+
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            event.target.closest('.nav-item')?.classList.add('active');
+
+            if (viewName === 'stats') afficherStatistiques();
+            if (viewName === 'roulements') afficherRoulements();
         }
 
-        function afficherAlerte(message, type = 'info') {
-            const statut = document.getElementById('statutImport');
-            statut.className = `alert ${type}`;
-            statut.innerHTML = message;
-            statut.style.display = 'block';
+        function afficherAlerte(message, type = "info") {
+            const div = document.getElementById("statutImport");
+            div.className = `alert ${type}`;
+            div.innerHTML = message;
+            div.style.display = 'block';
+        }
+
+        // ============ TRAITEMENT FICHIERS CSV ============
+        async function traiterFichiersMultiples() {
+            const input = document.getElementById('fichiersInput');
+            
+            if (input.files.length === 0) {
+                afficherAlerte("❌ Veuillez sélectionner au moins un fichier CSV !", "error");
+                return;
+            }
+
+            baseDonneesCategories = {};
+            const fichiersCSV = Array.from(input.files).sort((a, b) => 
+                a.name.localeCompare(b.name, "fr", { sensitivity: "base" })
+            );
+
+            // Liste des lignes qui sont des sous-totaux à rattacher à la catégorie précédente
+            const lignesARattacher = [
+                "Total P/L for Statement Period",
+                "Total P/L for Period",
+                "P/L Total pour période relevé de compte",
+                "Net P/L",
+                "Total Dividends",
+                "Total Interest",
+                "Total Tax",
+                "Total Commissions",
+                "Total Fee"
+            ];
+
+            let derniereCategorieValide = null;
+            let totalLignesTraitees = 0;
+
+            // Étape 1 : Consolider tous les CSV en mémoire avec la structure correcte
+            for (let fichier of fichiersCSV) {
+                const nomFichier = fichier.name;
+                const nomBase = nomFichier.replace(/\.csv$/i, '');
+                const contenu = await fichier.text();
+                const lignes = contenu.replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n');
+
+                for (let i = 0; i < lignes.length; i++) {
+                    const ligneTexte = lignes[i].trim();
+                    if (ligneTexte === '') continue;
+
+                    const cellules = parseCSVLine(ligneTexte);
+                    const categorieOriginale = cellules[0];
+                    const typeLigne = cellules[1] ? cellules[1].toLowerCase() : '';
+
+                    // Vérifier si la ligne actuelle est un sous-total à rattacher
+                    const estUnSousTotal = (lignesARattacher.indexOf(categorieOriginale) !== -1);
+
+                    // Déterminer dans quelle catégorie on doit injecter la ligne
+                    let categorieCible = categorieOriginale;
+                    if (estUnSousTotal && derniereCategorieValide) {
+                        categorieCible = derniereCategorieValide;
+                    }
+
+                    // --- Détection fiable des en-têtes ---
+                    if (typeLigne === 'header') {
+                        if (!baseDonneesCategories[categorieCible]) {
+                            var enTete = ['Fichier Source'];
+                            for (var e = 0; e < cellules.length; e++) {
+                                enTete.push(cellules[e]);
+                            }
+                            baseDonneesCategories[categorieCible] = { enTete: enTete, lignes: [] };
+                        }
+                        // On met à jour la dernière catégorie valide car on vient de trouver un Header
+                        derniereCategorieValide = categorieCible;
+                    } else {
+                        // C'est une ligne de données (ou "Data")
+                        if (!baseDonneesCategories[categorieCible]) {
+                            var enTeteDefaut = ['Fichier Source'];
+                            // On génère Col 0, Col 1, etc. par sécurité
+                            for (var e = 0; e < cellules.length; e++) {
+                                enTeteDefaut.push('Col ' + e);
+                            }
+                            baseDonneesCategories[categorieCible] = { enTete: enTeteDefaut, lignes: [] };
+                        }
+
+                        // Ajouter le nom du fichier source en début de ligne
+                        cellules.unshift(nomBase);
+                        
+                        // Normaliser les valeurs numériques
+                        for (let col = 1; col < cellules.length; col++) {
+                            cellules[col] = normaliserValeur(cellules[col]);
+                        }
+                        
+                        baseDonneesCategories[categorieCible].lignes.push(cellules);
+                        totalLignesTraitees++;
+                        
+                        // On ne met à jour la dernière catégorie valide que si ce n'est pas un sous-total
+                        if (!estUnSousTotal) {
+                            derniereCategorieValide = categorieCible;
+                        }
+                    }
+                }
+            }
+
+            // Étape 2 : Remplir la base de données IndexedDB
+            for (const [categorie, donnees] of Object.entries(baseDonneesCategories)) {
+                for (const ligne of donnees.lignes) {
+                    // Créer une clé métier unique
+                    const id = `${categorie}_${JSON.stringify(ligne)}`.substring(0, 100);
+                    
+                    const transaction = {
+                        id: await CleMetierCalculator.calculerCle(
+                            categorie,
+                            ligne[2] || 'N/A',  // date
+                            ligne[3] || 'N/A',  // heure
+                            ligne[1] || 'N/A',  // symbole (fichier source)
+                            0,
+                            categorie
+                        ),
+                        categorie,
+                        ligneComplete: ligne,
+                        dateImport: new Date().toISOString()
+                    };
+
+                    // Vérifier si doublon
+                    const existant = await ibkrDb.get('transactions', transaction.id);
+                    if (!existant) {
+                        await ibkrDb.put('transactions', transaction);
+                    }
+                }
+            }
+
+            // Étape 3 : Mettre à jour le sélecteur de catégories
+            const selectCategorie = document.getElementById('selectCategorie');
+            selectCategorie.innerHTML = Object.keys(baseDonneesCategories)
+                .sort()
+                .map(cat => `<option value="${cat}">${cat}</option>`)
+                .join('');
+
+            afficherAlerte(`✅ ${totalLignesTraitees} lignes importées avec succès dans ${Object.keys(baseDonneesCategories).length} catégories !`, "success");
+            console.log("✓ Données consolidées correctement");
+        }
+
+        // ============ CALCULATEUR CLÉ MÉTIER ============
+        class CleMetierCalculator {
+            static async calculerCle(categorie, date, heure, symbole, montant, description) {
+                const input = `${categorie}|${date}|${heure}|${symbole}|${montant}|${description}`;
+                const encoder = new TextEncoder();
+                const data = encoder.encode(input);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+                return hashHex.substring(0, 16);
+            }
+        }
+
+        async function afficherDonneesCategorie() {
+            const select = document.getElementById('selectCategorie');
+            const categorie = select.value;
+
+            if (!baseDonneesCategories[categorie]) return;
+
+            const dataObj = baseDonneesCategories[categorie];
+            const tbody = document.getElementById('corpsTableau');
+            const thead = document.getElementById('enteteTableau');
+
+            thead.innerHTML = "<tr>" + dataObj.enTete.map(h => `<th>${h}</th>`).join('') + "</tr>";
+            tbody.innerHTML = dataObj.lignes.map(ligne => {
+                return "<tr>" + ligne.map((cellule, index) => {
+                    if(index === 0) return `<td><span class="badge primary">${cellule}</span></td>`;
+                    return `<td>${cellule || ''}</td>`;
+                }).join('') + "</tr>";
+            }).join('');
+        }
+
+        async function afficherStatistiques() {
+            try {
+                const transactions = await ibkrDb.getAll('transactions');
+                
+                const categories = new Set(transactions.map(t => t.categorie));
+                const nbLignes = Object.values(baseDonneesCategories).reduce((sum, cat) => sum + cat.lignes.length, 0);
+
+                let statsHtml = '';
+                statsHtml += `<div class="stat-item"><div class="stat-label">Total lignes</div><div class="stat-value">${nbLignes}</div></div>`;
+                statsHtml += `<div class="stat-item"><div class="stat-label">Catégories</div><div class="stat-value">${Object.keys(baseDonneesCategories).length}</div></div>`;
+                statsHtml += `<div class="stat-item"><div class="stat-label">En base de données</div><div class="stat-value">${transactions.length}</div></div>`;
+
+                document.getElementById('statsGrid').innerHTML = statsHtml;
+
+                // Par catégorie
+                const parCategorie = Object.keys(baseDonneesCategories).map(cat => 
+                    `📊 ${cat}: ${baseDonneesCategories[cat].lignes.length} lignes`
+                );
+                document.getElementById('statsCategories').innerHTML = parCategorie.join('<br>');
+
+                document.getElementById('statsYears').innerHTML = '<p>📅 Analyse chronologique (en développement)</p>';
+
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        async function afficherRoulements() {
+            try {
+                const transactions = await ibkrDb.getAll('transactions');
+                const roulements = transactions.filter(t => t.categorie.includes('Option'));
+                
+                if (roulements.length === 0) {
+                    document.getElementById('roulementsContent').innerHTML = '<p>Aucun roulement détecté</p>';
+                    return;
+                }
+
+                let html = `<p>🔄 ${roulements.length} transactions d'options détectées (analyse en développement)</p>`;
+                document.getElementById('roulementsContent').innerHTML = html;
+
+            } catch (err) {
+                console.error(err);
+            }
         }
 
         async function chargerDupeDB() {
-            await ibkrDb.init();
-            const transactions = await ibkrDb.getAll(STORE_NAME);
-            console.log(`Chargé ${transactions.length} transactions depuis IndexedDB`);
-            afficherAlerte(`✅ ${transactions.length} transactions chargées depuis le stockage local`, "success");
+            try {
+                const transactions = await ibkrDb.getAll('transactions');
+                if (transactions.length === 0) {
+                    afficherAlerte("❌ Aucune donnée trouvée en mémoire locale", "error");
+                    return;
+                }
+
+                afficherAlerte(`✓ ${transactions.length} transactions chargées du stockage local`, "success");
+
+            } catch (err) {
+                console.error(err);
+                afficherAlerte("❌ Erreur chargement : " + err.message, "error");
+            }
         }
 
-        // Initialisation
-        window.addEventListener('load', () => {
-            ibkrDb.init();
+        // ============ GESTION SUPPRESSION ============
+        function afficherModalSupprimer() {
+            document.getElementById('modalSupprimer').classList.add('show');
+        }
+
+        function fermerModalSupprimer() {
+            document.getElementById('modalSupprimer').classList.remove('show');
+        }
+
+        async function validerSuppressionDonnees() {
+            try {
+                await ibkrDb.deleteAllStores();
+                baseDonneesCategories = {};
+                document.getElementById('fichiersInput').value = '';
+                document.getElementById('selectCategorie').innerHTML = '';
+                fermerModalSupprimer();
+                afficherAlerte("✅ Toutes les données ont été supprimées avec succès", "success");
+            } catch (err) {
+                console.error(err);
+                afficherAlerte("❌ Erreur suppression : " + err.message, "error");
+            }
+        }
+
+        // ============ EXPORT JSON ============
+        async function exporterJSON() {
+            try {
+                const transactions = await ibkrDb.getAll('transactions');
+                const dataStr = JSON.stringify(transactions, null, 2);
+                const dataBlob = new Blob([dataStr], { type: 'application/json' });
+                const url = URL.createObjectURL(dataBlob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `IBKR-Export-${new Date().toISOString().split('T')[0]}.json`;
+                link.click();
+                afficherAlerte("✅ Export JSON réussi", "success");
+            } catch (err) {
+                console.error(err);
+                afficherAlerte("❌ Erreur export : " + err.message, "error");
+            }
+        }
+
+        function toggleDebug() {
+            const enabled = document.getElementById('debugMode').checked;
+            if (enabled) console.log("🐛 Mode debug activé");
+        }
+
+        function toggleDarkMode() {
+            const enabled = document.getElementById('darkMode').checked;
+            if (enabled) console.log("🌙 Mode sombre en développement");
+        }
+
+        // ============ INIT ============
+        window.addEventListener("DOMContentLoaded", async () => {
+            console.log("🚀 Initialisation DEV...");
+            try {
+                ibkrDb = new IBKRDatabase();
+                await ibkrDb.init();
+                console.log("✓ IndexedDB prêt");
+                console.log("✓ Parser CSV IBKR chargé (version éprouvée)");
+                afficherAlerte("ℹ️ Bienvenue en version DEV - Parser CSV IBKR corrigé ✓", "info");
+            } catch (err) {
+                console.error("❌ Erreur init :", err);
+                afficherAlerte(`Erreur initialisation : ${err.message}`, "error");
+            }
+        });
+
+        // Fermer modal en cliquant dehors
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('modalSupprimer');
+            if (e.target === modal) {
+                fermerModalSupprimer();
+            }
         });
     </script>
+
 </body>
 </html>
