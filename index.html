@@ -42,295 +42,287 @@
         /* ==========================================
            SIDEBAR GAUCHE (15%)
            ========================================== */
+
         .sidebar {
             width: 15%;
-            background: white;
-            border-right: 1px solid #e9ecef;
-            overflow-y: auto;
-            padding: 20px 0;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
             display: flex;
             flex-direction: column;
+            height: calc(100vh - 45px);
+            overflow-y: auto;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+            position: fixed;
+            left: 0;
+            top: 45px;
         }
 
         .sidebar-header {
-            padding: 0 15px 20px 15px;
-            border-bottom: 1px solid #e9ecef;
-            margin-bottom: 10px;
+            padding: 20px 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
         }
 
         .sidebar-header h2 {
             font-size: 16px;
             font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 4px;
+            margin-bottom: 5px;
         }
 
         .sidebar-header p {
-            font-size: 11px;
-            color: #94a3b8;
-            font-weight: 500;
+            font-size: 12px;
+            color: #cbd5e1;
         }
 
         .sidebar-nav {
             flex: 1;
             overflow-y: auto;
-            padding: 0 10px;
+            padding: 20px 0;
         }
 
         .nav-section {
-            margin-bottom: 15px;
+            margin-bottom: 25px;
         }
 
         .nav-section-title {
             font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
-            color: #64748b;
-            padding: 0 15px 8px 15px;
+            color: #94a3b8;
+            padding: 0 15px;
+            margin-bottom: 10px;
             letter-spacing: 0.5px;
         }
 
         .nav-item {
-            padding: 10px 15px;
-            margin: 4px 0;
-            border-radius: 6px;
+            padding: 12px 15px;
             cursor: pointer;
-            font-size: 13px;
-            color: #475569;
+            border-left: 3px solid transparent;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
-            border-left: 3px solid transparent;
+            gap: 10px;
+            font-size: 14px;
         }
 
         .nav-item:hover {
-            background-color: #f1f5f9;
-            color: #1e293b;
+            background: rgba(255,255,255,0.1);
         }
 
         .nav-item.active {
-            background-color: #e0f2fe;
-            color: #0369a1;
-            border-left-color: #0369a1;
-            font-weight: 600;
+            background: rgba(37, 99, 235, 0.2);
+            border-left-color: #2563eb;
+            color: #60a5fa;
         }
 
-        .nav-item span {
-            font-size: 16px;
+        .sidebar-footer {
+            padding: 20px 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 13px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            cursor: pointer;
         }
 
         /* ==========================================
-           MAIN CONTENT (85%)
+           CONTENU DROIT (85%)
            ========================================== */
+
         .main-content {
-            flex: 1;
+            margin-left: 15%;
+            width: 85%;
+            height: calc(100vh - 45px);
+            overflow-y: auto;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
         }
 
         .header {
-            background: white;
-            padding: 20px 30px;
-            border-bottom: 1px solid #e9ecef;
-            flex-shrink: 0;
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
         }
 
         .header h1 {
-            font-size: 24px;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 4px;
+            font-size: 28px;
+            margin-bottom: 8px;
         }
 
         .header p {
-            font-size: 13px;
-            color: #64748b;
+            font-size: 14px;
+            opacity: 0.9;
         }
 
         .content {
             flex: 1;
+            padding: 30px;
             overflow-y: auto;
-            padding: 25px 30px;
         }
 
-        .view {
-            display: none;
-        }
-
-        .view.active {
-            display: block;
-        }
-
-        /* ==========================================
-           CARTES & CONTENEURS
-           ========================================== */
         .card {
             background: white;
-            padding: 25px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 25px;
-            border: 1px solid #e9ecef;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
         }
 
-        .card h3 {
-            font-size: 16px;
-            font-weight: 700;
-            color: #0f172a;
+        h3 { 
+            color: #334155; 
+            margin-top: 0; 
+            margin-bottom: 15px; 
+        }
+
+        .btn { 
+            background: #2563eb; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-weight: 600; 
+            margin-right: 10px;
+            margin-bottom: 10px;
+            transition: background 0.2s;
+        }
+
+        .btn:hover { background: #1d4ed8; }
+        .btn.danger { background: #dc2626; }
+        .btn.danger:hover { background: #991b1b; }
+        .btn.success { background: #16a34a; }
+        .btn.success:hover { background: #15803d; }
+
+        input[type="file"] {
             margin-bottom: 15px;
-        }
-
-        .card h4 {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 10px;
-        }
-
-        /* ==========================================
-           FORMULAIRES & INPUTS
-           ========================================== */
-        input[type="file"],
-        select {
             display: block;
-            margin: 12px 0;
-            padding: 10px 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            font-size: 13px;
-            font-family: inherit;
-            width: 100%;
-            max-width: 400px;
         }
 
-        input[type="file"]::file-selector-button {
-            background: #0369a1;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 12px;
-            margin-right: 10px;
+        select { 
+            padding: 10px; 
+            border-radius: 6px; 
+            border: 1px solid #cbd5e1; 
+            width: 100%; 
+            max-width: 400px; 
+            font-size: 15px; 
+            margin-bottom: 20px; 
         }
 
-        input[type="file"]::file-selector-button:hover {
-            background: #0284c7;
-        }
-
-        /* ==========================================
-           BOUTONS
-           ========================================== */
-        .btn {
-            background: #0369a1;
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            transition: all 0.2s;
-        }
-
-        .btn:hover {
-            background: #0284c7;
-            box-shadow: 0 4px 12px rgba(3, 105, 161, 0.3);
-        }
-
-        .btn.success {
-            background: #059669;
-        }
-
-        .btn.success:hover {
-            background: #047857;
-        }
-
-        .btn.danger {
-            background: #dc2626;
-        }
-
-        .btn.danger:hover {
-            background: #b91c1c;
-        }
-
-        .btn:disabled {
-            background: #cbd5e1;
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
-
-        /* ==========================================
-           ALERTES
-           ========================================== */
-        .alert {
-            padding: 12px 16px;
-            border-radius: 6px;
-            font-size: 13px;
-            margin: 10px 0;
+        .alert { 
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 14px;
             border-left: 4px solid;
         }
 
         .alert.info {
-            background: #dbeafe;
+            background: #e0f2fe;
+            border-left-color: #0284c7;
             color: #0c4a6e;
-            border-left-color: #0369a1;
         }
 
         .alert.success {
             background: #dcfce7;
-            color: #15803d;
-            border-left-color: #059669;
+            border-left-color: #16a34a;
+            color: #166534;
         }
 
         .alert.error {
             background: #fee2e2;
-            color: #7f1d1d;
             border-left-color: #dc2626;
+            color: #991b1b;
         }
 
         .alert.warning {
             background: #fef3c7;
-            color: #92400e;
             border-left-color: #f59e0b;
+            color: #92400e;
         }
 
-        /* ==========================================
-           TABLEAUX
-           ========================================== */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
             font-size: 13px;
-            margin: 15px 0;
         }
 
-        th {
-            background-color: #f1f5f9;
-            border-bottom: 2px solid #cbd5e1;
-            padding: 10px;
+        table th {
+            background: #f1f5f9;
+            padding: 12px;
             text-align: left;
             font-weight: 600;
+            color: #475569;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        table tr:hover {
+            background: #f9fafb;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge.primary {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
             color: #1e293b;
+            margin-top: 5px;
         }
 
-        td {
-            padding: 10px;
-            border-bottom: 1px solid #e9ecef;
-        }
-
-        tr:hover {
-            background-color: #f8fafc;
-        }
-
-        /* ==========================================
-           MODAL
-           ========================================== */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -339,7 +331,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.5);
             align-items: center;
             justify-content: center;
         }
@@ -351,14 +343,14 @@
         .modal-content {
             background-color: white;
             padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            max-width: 500px;
+            border-radius: 10px;
+            max-width: 400px;
             width: 90%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .modal-header {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             margin-bottom: 15px;
             color: #1e293b;
@@ -368,7 +360,7 @@
             font-size: 14px;
             color: #475569;
             margin-bottom: 20px;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         .modal-footer {
@@ -376,38 +368,19 @@
             gap: 10px;
             justify-content: flex-end;
         }
-
-        /* ==========================================
-           SCROLLBAR PERSONNALISÉE
-           ========================================== */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
+    
     </style>
 </head>
 <body>
     <!-- BANNIÈRE DEV -->
     <div class="dev-banner">
-        🧪 VERSION DEV - Testez les nouvelles fonctionnalités | 
-        <a href="https://github.com/Quasar-Nebulus/IBKR-Portfolio-Analyzer-DEV" style="color: white; text-decoration: underline;">Voir sur GitHub</a>
+        🧪 Version DEV IBKR - <a href="https://github.com/Quasar-Nebulus/IBKR-Portfolio-Analyzer-DEV" style="color: white; text-decoration: underline;">Voir sur GitHub</a>
     </div>
 
     <!-- ==========================================
          SIDEBAR GAUCHE (15%)
          ========================================== -->
+
     <div class="sidebar">
         <div class="sidebar-header">
             <h2>🧪 IBKR DEV</h2>
@@ -432,19 +405,19 @@
                 <div class="nav-item" onclick="afficherVue('stats')">
                     <span>📊</span> Statistiques
                 </div>
-                <div class="nav-item" onclick="afficherVue('actions-detail')">
-                    <span>📈</span> Détail Actions
-                </div>
                 <div class="nav-item" onclick="afficherVue('roulements')">
                     <span>🔄</span> Roulements
+                </div>
+                <div class="nav-item" onclick="afficherVue('actions-detail')">
+                    <span>📈</span> Détail Actions
                 </div>
             </div>
 
             <!-- Section Fiscalité -->
             <div class="nav-section">
-                <div class="nav-section-title">🧾 Fiscalité</div>
+                <div class="nav-section-title">🏛️ Fiscalité</div>
                 <div class="nav-item" onclick="afficherVue('ifu')">
-                    <span>📋</span> IFU
+                    <span>📋</span> Générer IFU
                 </div>
                 <div class="nav-item" onclick="afficherVue('usa-tax')">
                     <span>🇺🇸</span> Retenues USA
@@ -453,20 +426,35 @@
 
             <!-- Section Paramètres -->
             <div class="nav-section">
-                <div class="nav-section-title">⚙️ Outils</div>
-                <div class="nav-item" onclick="afficherVue('parametres')">
+                <div class="nav-section-title">⚙️ Paramètres</div>
+                <div class="nav-item" onclick="afficherVue('settings')">
                     <span>⚙️</span> Paramètres
                 </div>
             </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="checkbox-group">
+                <input type="checkbox" id="debugMode" onchange="toggleDebug()">
+                <label for="debugMode">Debug</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="darkMode" onchange="toggleDarkMode()">
+                <label for="darkMode">Mode sombre</label>
+            </div>
+            <p style="margin-top: 15px; font-size: 11px;">
+                🔒 Vos données restent en local.<br>Aucun upload vers serveur.
+            </p>
         </div>
     </div>
 
     <!-- ==========================================
          CONTENU DROIT (85%)
          ========================================== -->
+
     <div class="main-content">
         <div class="header">
-            <h1 id="headerTitle">Importer vos données IBKR</h1>
+            <h1 id="headerTitle">📥 Importer vos données</h1>
             <p id="headerSubtitle">Sélectionnez vos fichiers CSV exportés depuis Interactive Brokers</p>
         </div>
 
@@ -486,9 +474,15 @@
             <!-- ========== VUE : EXPLORER ========== -->
             <div id="view-explorer" class="view" style="display: none;">
                 <div class="card">
-                    <h3>🔍 Explorer les données</h3>
-                    <p>Explorer les données chargées en détail.</p>
-                    <div id="explorerContent"></div>
+                    <h3>🔍 Explorer vos données par catégorie</h3>
+                    <label for="selectCategorie">Sélectionnez une catégorie :</label>
+                    <select id="selectCategorie" onchange="afficherDonneesCategorie()"></select>
+                    <div class="table-container">
+                        <table id="tableauDonnees">
+                            <thead id="enteteTableau"></thead>
+                            <tbody id="corpsTableau"></tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -496,23 +490,15 @@
             <div id="view-stats" class="view" style="display: none;">
                 <div class="card">
                     <h3>📊 Statistiques globales</h3>
-                    <div id="statsContent"></div>
+                    <div class="stats-grid" id="statsGrid"></div>
                 </div>
-            </div>
-
-            <!-- ========== VUE : DÉTAIL ACTIONS ========== -->
-            <div id="view-actions-detail" class="view" style="display: none;">
                 <div class="card">
-                    <h3>📈 Détail des mouvements d'actions</h3>
-                    <div id="actionsDetailFilters" style="margin-bottom: 20px;">
-                        <label for="filterTicker" style="display: inline-block; margin-right: 15px; font-weight: 600; font-size: 13px;">
-                            🔎 Filtrer par ticker :
-                        </label>
-                        <select id="filterTicker" onchange="afficherActionsDetail()" style="padding: 8px; border: 1px solid #ddd; border-radius: 6px; max-width: 200px;">
-                            <option value="">-- Tous les tickers --</option>
-                        </select>
-                    </div>
-                    <div id="actionsDetailContent"></div>
+                    <h3>📅 Répartition par année</h3>
+                    <div id="statsYears" style="font-size: 14px; line-height: 1.8;"></div>
+                </div>
+                <div class="card">
+                    <h3>📊 Répartition par catégorie</h3>
+                    <div id="statsCategories" style="font-size: 14px; line-height: 1.8;"></div>
                 </div>
             </div>
 
@@ -521,6 +507,22 @@
                 <div class="card">
                     <h3>🔄 Détection des roulements d'options</h3>
                     <div id="roulementsContent"></div>
+                </div>
+            </div>
+
+            <!-- ========== VUE : DÉTAIL ACTIONS ========== -->
+            <div id="view-actions-detail" class="view" style="display: none;">
+                <div class="card">
+                    <h3>📈 Détail des mouvements d'actions</h3>
+                    <div id="actionsDetailFilters" style="margin-bottom: 20px;">
+                        <label for="filterTicker" style="display: inline-block; margin-right: 15px;">
+                            Filtrer par ticker :
+                        </label>
+                        <select id="filterTicker" onchange="afficherActionsDetail()" style="max-width: 200px;">
+                            <option value="">-- Tous les tickers --</option>
+                        </select>
+                    </div>
+                    <div id="actionsDetailContent"></div>
                 </div>
             </div>
 
@@ -541,11 +543,12 @@
             </div>
 
             <!-- ========== VUE : PARAMÈTRES ========== -->
-            <div id="view-parametres" class="view" style="display: none;">
+            <div id="view-settings" class="view" style="display: none;">
                 <div class="card">
                     <h3>⚙️ Paramètres</h3>
-                    <button class="btn danger" onclick="afficherModalSupprimer()">🗑️ Vider la base de données locale</button>
-                    <div id="parametresContent"></div>
+                    <button class="btn danger" onclick="afficherModalSupprimer()">🗑️ Supprimer toutes les données</button>
+                    <button class="btn" onclick="exporterJSON()" style="background: #8b5cf6;">📥 Exporter en JSON</button>
+                    <div id="settingsInfo" style="margin-top: 20px; font-size: 14px;"></div>
                 </div>
             </div>
 
@@ -555,534 +558,454 @@
     <!-- MODAL SUPPRESSION -->
     <div id="modalSupprimer" class="modal">
         <div class="modal-content">
-            <div class="modal-header">⚠️ Confirmation de suppression</div>
+            <div class="modal-header">⚠️ Attention</div>
             <div class="modal-body">
-                Êtes-vous sûr de vouloir supprimer tous les données stockées localement ? Cette action est irréversible.
+                Êtes-vous absolument sûr de vouloir <strong>supprimer TOUTES les données</strong> stockées localement ?<br><br>
+                Cette action est <strong>irréversible</strong> et vous devrez réimporter vos fichiers CSV.
             </div>
             <div class="modal-footer">
                 <button class="btn" onclick="fermerModalSupprimer()">Annuler</button>
-                <button class="btn danger" onclick="supprimerDonnees()">Oui, supprimer</button>
+                <button class="btn danger" onclick="validerSuppressionDonnees()">Oui, supprimer</button>
             </div>
         </div>
     </div>
 
     <script>
-        // ============ CLASSE IBKRDatabase ============
+        // ============ CLASSE IndexedDB ============
         class IBKRDatabase {
             constructor() {
                 this.db = null;
-                this.dbName = 'IBKR_Data';
-                this.version = 1;
-                this.stores = {
-                    'transactions': 'id',
-                    'positions': 'id',
-                    'dividends': 'id',
-                    'interests': 'id',
-                    'metadata': 'key'
-                };
             }
 
             async init() {
                 return new Promise((resolve, reject) => {
-                    const request = indexedDB.open(this.dbName, this.version);
+                    const request = indexedDB.open('IBKRPortfolio', 1);
 
-                    request.onerror = () => reject(new Error('Erreur ouverture IndexedDB'));
+                    request.onerror = () => reject(request.error);
                     request.onsuccess = () => {
                         this.db = request.result;
-                        resolve();
+                        resolve(this.db);
                     };
 
-                    request.onupgradeneeded = (e) => {
-                        const db = e.target.result;
-                        for (const [storeName, keyPath] of Object.entries(this.stores)) {
-                            if (!db.objectStoreNames.contains(storeName)) {
-                                db.createObjectStore(storeName, { keyPath });
-                            }
+                    request.onupgradeneeded = (event) => {
+                        const db = event.target.result;
+                        
+                        if (!db.objectStoreNames.contains('transactions')) {
+                            const store = db.createObjectStore('transactions', { keyPath: 'id' });
+                            store.createIndex('date', 'date', { unique: false });
+                            store.createIndex('symbole', 'symbole', { unique: false });
+                            store.createIndex('categorie', 'categorie', { unique: false });
+                            store.createIndex('annee', 'annee', { unique: false });
+                        }
+
+                        if (!db.objectStoreNames.contains('metadata')) {
+                            db.createObjectStore('metadata', { keyPath: 'key' });
                         }
                     };
                 });
             }
 
-            async sauvegarder(storeName, donnees) {
+            getDb() {
+                return this.db;
+            }
+
+            async getAll(storeName) {
+                return new Promise((resolve, reject) => {
+                    const tx = this.db.transaction([storeName], 'readonly');
+                    const store = tx.objectStore(storeName);
+                    const request = store.getAll();
+                    request.onsuccess = () => resolve(request.result);
+                    request.onerror = () => reject(request.error);
+                });
+            }
+
+            async get(storeName, key) {
+                return new Promise((resolve, reject) => {
+                    const tx = this.db.transaction([storeName], 'readonly');
+                    const store = tx.objectStore(storeName);
+                    const request = store.get(key);
+                    request.onsuccess = () => resolve(request.result);
+                    request.onerror = () => reject(request.error);
+                });
+            }
+
+            async put(storeName, obj) {
                 return new Promise((resolve, reject) => {
                     const tx = this.db.transaction([storeName], 'readwrite');
                     const store = tx.objectStore(storeName);
-
-                    if (Array.isArray(donnees)) {
-                        donnees.forEach(item => store.add(item));
-                    } else {
-                        store.add(donnees);
-                    }
-
-                    tx.onerror = () => reject(new Error(`Erreur sauvegarde ${storeName}`));
-                    tx.oncomplete = () => resolve();
-                });
-            }
-
-            async obtenirTransactions() {
-                return new Promise((resolve, reject) => {
-                    const tx = this.db.transaction(['transactions'], 'readonly');
-                    const store = tx.objectStore('transactions');
-                    const request = store.getAll();
-
-                    request.onerror = () => reject(new Error('Erreur lecture transactions'));
+                    const request = store.put(obj);
                     request.onsuccess = () => resolve(request.result);
+                    request.onerror = () => reject(request.error);
                 });
             }
 
-            async obtenirPositions() {
+            async clear(storeName) {
                 return new Promise((resolve, reject) => {
-                    const tx = this.db.transaction(['positions'], 'readonly');
-                    const store = tx.objectStore('positions');
-                    const request = store.getAll();
-
-                    request.onerror = () => reject(new Error('Erreur lecture positions'));
-                    request.onsuccess = () => resolve(request.result);
+                    const tx = this.db.transaction([storeName], 'readwrite');
+                    const store = tx.objectStore(storeName);
+                    const request = store.clear();
+                    request.onsuccess = () => resolve();
+                    request.onerror = () => reject(request.error);
                 });
             }
 
-            async obtenirDividendes() {
+            async deleteAllStores() {
                 return new Promise((resolve, reject) => {
-                    const tx = this.db.transaction(['dividends'], 'readonly');
-                    const store = tx.objectStore('dividends');
-                    const request = store.getAll();
-
-                    request.onerror = () => reject(new Error('Erreur lecture dividendes'));
-                    request.onsuccess = () => resolve(request.result);
-                });
-            }
-
-            async vider() {
-                const stores = Object.keys(this.stores);
-                for (const storeName of stores) {
-                    await new Promise((resolve, reject) => {
+                    const storeNames = ['transactions', 'metadata'];
+                    let completed = 0;
+                    
+                    for (const storeName of storeNames) {
                         const tx = this.db.transaction([storeName], 'readwrite');
                         const store = tx.objectStore(storeName);
                         const request = store.clear();
+                        request.onsuccess = () => {
+                            completed++;
+                            if (completed === storeNames.length) resolve();
+                        };
+                        request.onerror = () => reject(request.error);
+                    }
+                });
+            }
+        }
 
-                        request.onerror = () => reject(new Error(`Erreur effacement ${storeName}`));
-                        request.oncomplete = () => resolve();
-                    });
+        // ============ VARIABLES GLOBALES ============
+        let ibkrDb;
+        let baseDonneesCategories = {};
+
+        // ============ PARSEUR CSV ÉPROUVÉ IBKR ============
+        function parseCSVLine(ligne) {
+            var resultat = [];
+            var champ = '';
+            var dansGuillemets = false;
+
+            for (var i = 0; i < ligne.length; i++) {
+                var char = ligne.charAt(i);
+
+                if (char === '"') {
+                    if (dansGuillemets && ligne.charAt(i + 1) === '"') {
+                        champ += '"';
+                        i++;
+                    } else {
+                        dansGuillemets = !dansGuillemets;
+                    }
+                } else if (char === ',' && !dansGuillemets) {
+                    resultat.push(champ);
+                    champ = '';
+                } else {
+                    champ += char;
                 }
             }
-        }
 
-        // ============ INSTANCE GLOBALE ============
-        let ibkrDb = null;
+            resultat.push(champ);
 
-        // ============ GESTION VUE ============
-        function afficherVue(vueId) {
-            // Masquer toutes les vues
-            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-            document.getElementById(`view-${vueId}`).classList.add('active');
-
-            // Mettre à jour le menu actif
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-            event.target.closest('.nav-item').classList.add('active');
-
-            // Mettre à jour le header
-            switch(vueId) {
-                case 'import':
-                    document.getElementById('headerTitle').textContent = 'Importer vos données IBKR';
-                    document.getElementById('headerSubtitle').textContent = 'Sélectionnez vos fichiers CSV exportés depuis Interactive Brokers';
-                    break;
-                case 'explorer':
-                    document.getElementById('headerTitle').textContent = '🔍 Explorer les données';
-                    document.getElementById('headerSubtitle').textContent = 'Consultez les données chargées en détail';
-                    afficherExplorer();
-                    break;
-                case 'stats':
-                    document.getElementById('headerTitle').textContent = '📊 Statistiques globales';
-                    document.getElementById('headerSubtitle').textContent = 'Vue d\'ensemble de vos investissements';
-                    afficherStats();
-                    break;
-                case 'actions-detail':
-                    document.getElementById('headerTitle').textContent = '📈 Détail des mouvements d\'actions';
-                    document.getElementById('headerSubtitle').textContent = 'Analyse complète de vos transactions d\'actions avec calcul du PRU';
-                    afficherActionsDetail();
-                    break;
-                case 'roulements':
-                    document.getElementById('headerTitle').textContent = '🔄 Roulements d\'options';
-                    document.getElementById('headerSubtitle').textContent = 'Détection des roulements (clôture + ouverture)';
-                    afficherRoulements();
-                    break;
-                case 'ifu':
-                    document.getElementById('headerTitle').textContent = '📋 Génération IFU';
-                    document.getElementById('headerSubtitle').textContent = 'Préparation du formulaire fiscal (en développement)';
-                    break;
-                case 'usa-tax':
-                    document.getElementById('headerTitle').textContent = '🇺🇸 Retenues fiscales USA';
-                    document.getElementById('headerSubtitle').textContent = 'Analyse des prélèvements à la source (en développement)';
-                    break;
-                case 'parametres':
-                    document.getElementById('headerTitle').textContent = '⚙️ Paramètres';
-                    document.getElementById('headerSubtitle').textContent = 'Configuration de l\'application';
-                    break;
+            for (var j = 0; j < resultat.length; j++) {
+                resultat[j] = resultat[j].trim();
             }
+
+            return resultat;
         }
 
-        // ============ IMPORT CSV ============
-        function traiterFichiersMultiples() {
-            const input = document.getElementById('fichiersInput');
-            const fichiers = input.files;
+        function normaliserValeur(valeur) {
+            if (typeof valeur === 'number') return valeur;
+            if (!valeur || valeur === '') return '';
 
-            if (fichiers.length === 0) {
-                afficherAlerte('Sélectionnez au moins un fichier CSV', 'error');
+            var strVal = valeur.toString().trim();
+            var regexNombreUS = /^[+-]?(\d{1,3}(,\d{3})*|\d+)(\.\d+)?$/;
+
+            if (regexNombreUS.test(strVal)) {
+                var nombreNettoye = strVal.replace(/,/g, '');
+                var nombre = parseFloat(nombreNettoye);
+                return isNaN(nombre) ? strVal : nombre;
+            }
+
+            return strVal;
+        }
+
+        // ============ UTILITAIRES ============
+        function afficherVue(viewName) {
+            document.querySelectorAll('.view').forEach(v => {
+                v.classList.remove('active');
+                v.style.display = 'none';
+            });
+
+            const viewElement = document.getElementById(`view-${viewName}`);
+            if (viewElement) {
+                viewElement.classList.add('active');
+                viewElement.style.display = 'block';
+            }
+
+            const titles = {
+                'import': ['📥 Importer vos données', 'Sélectionnez vos fichiers CSV exportés depuis Interactive Brokers'],
+                'explorer': ['🔍 Explorer les données', 'Consultez vos transactions par catégorie'],
+                'stats': ['📊 Statistiques globales', 'Vue d\'ensemble de votre portefeuille'],
+                'roulements': ['🔄 Roulements détectés', 'Identifiez les fermetures et réouvertures rapides'],
+                'actions-detail': ['📈 Détail des actions', 'Analyse complète de vos transactions d\'actions avec calcul du PRU'],
+                'ifu': ['📋 Générer un IFU', 'Rapport fiscal pour la déclaration'],
+                'usa-tax': ['🇺🇸 Retenues fiscales USA', 'Analyse des retenues d\'impôt'],
+                'settings': ['⚙️ Paramètres', 'Configuration et gestion des données']
+            };
+
+            if (titles[viewName]) {
+                document.getElementById('headerTitle').textContent = titles[viewName][0];
+                document.getElementById('headerSubtitle').textContent = titles[viewName][1];
+            }
+
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            event.target.closest('.nav-item')?.classList.add('active');
+
+            if (viewName === 'stats') afficherStatistiques();
+            if (viewName === 'roulements') afficherRoulements();
+            if (viewName === 'actions-detail') afficherActionsDetail();
+        }
+
+        function afficherAlerte(message, type = "info") {
+            const div = document.getElementById("statutImport");
+            div.className = `alert ${type}`;
+            div.innerHTML = message;
+            div.style.display = 'block';
+        }
+
+        // ============ TRAITEMENT FICHIERS CSV ============
+        async function traiterFichiersMultiples() {
+            const input = document.getElementById('fichiersInput');
+            
+            if (input.files.length === 0) {
+                afficherAlerte("❌ Veuillez sélectionner au moins un fichier CSV !", "error");
                 return;
             }
 
-            let fichiersTrait = 0;
+            baseDonneesCategories = {};
+            const fichiersCSV = Array.from(input.files).sort((a, b) => 
+                a.name.localeCompare(b.name, "fr", { sensitivity: "base" })
+            );
 
-            for (let i = 0; i < fichiers.length; i++) {
-                const lecteur = new FileReader();
-                lecteur.onload = async (e) => {
-                    try {
-                        const contenu = e.target.result;
-                        const donnees = parserCSVIBKR(contenu);
-                        
-                        if (donnees.transactions && donnees.transactions.length > 0) {
-                            await ibkrDb.sauvegarder('transactions', donnees.transactions);
-                        }
-                        if (donnees.positions && donnees.positions.length > 0) {
-                            await ibkrDb.sauvegarder('positions', donnees.positions);
-                        }
-                        if (donnees.dividends && donnees.dividends.length > 0) {
-                            await ibkrDb.sauvegarder('dividends', donnees.dividends);
-                        }
+            const lignesARattacher = [
+                "Total P/L for Statement Period",
+                "Total P/L for Period",
+                "P/L Total pour période relevé de compte",
+                "Net P/L",
+                "Total Dividends",
+                "Total Interest",
+                "Total Tax",
+                "Total Commissions",
+                "Total Fee"
+            ];
 
-                        fichiersTrait++;
-                        if (fichiersTrait === fichiers.length) {
-                            afficherAlerte(`✓ ${fichiers.length} fichier(s) importé(s) avec succès`, 'success');
-                            setTimeout(() => afficherVue('stats'), 1000);
-                        }
-                    } catch (err) {
-                        console.error('Erreur traitement :', err);
-                        afficherAlerte(`Erreur : ${err.message}`, 'error');
+            let derniereCategorieValide = null;
+            let totalLignesTraitees = 0;
+
+            for (let fichier of fichiersCSV) {
+                const nomFichier = fichier.name;
+                const nomBase = nomFichier.replace(/\.csv$/i, '');
+                const contenu = await fichier.text();
+                const lignes = contenu.replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n');
+
+                for (let i = 0; i < lignes.length; i++) {
+                    const ligneTexte = lignes[i].trim();
+                    if (ligneTexte === '') continue;
+
+                    const cellules = parseCSVLine(ligneTexte);
+                    const categorieOriginale = cellules[0];
+                    const typeLigne = cellules[1] ? cellules[1].toLowerCase() : '';
+
+                    const estUnSousTotal = (lignesARattacher.indexOf(categorieOriginale) !== -1);
+
+                    let categorieCible = categorieOriginale;
+                    if (estUnSousTotal && derniereCategorieValide) {
+                        categorieCible = derniereCategorieValide;
                     }
-                };
-                lecteur.readAsText(fichiers[i]);
-            }
-        }
 
-        // ============ PARSER CSV IBKR ============
-        function parserCSVIBKR(contenu) {
-            const lignes = contenu.split('\n');
-            const donnees = {
-                transactions: [],
-                positions: [],
-                dividends: [],
-                interests: [],
-                metadata: {}
-            };
-
-            let sectionCourante = null;
-            let enTete = null;
-            let id = 1;
-
-            for (let i = 0; i < lignes.length; i++) {
-                const ligne = lignes[i].trim();
-
-                if (ligne.includes('Statement:')) {
-                    sectionCourante = ligne.replace('Statement:', '').trim();
-                    continue;
-                }
-
-                if (ligne.includes('Header:')) {
-                    if (lignes[i+1]) {
-                        const ligneSuivante = lignes[i+1].trim();
-                        if (ligneSuivante.includes('Nom champ:')) {
-                            const parts = ligneSuivante.split(',');
-                            enTete = parts.slice(2).map(p => p.split(':')[1]?.trim()).filter(Boolean);
-                        }
-                    }
-                    continue;
-                }
-
-                if (ligne.includes('Nom champ:') && ligne.includes('Valeur champ:')) {
-                    const parts = ligne.split(',');
-                    if (parts.length >= 2) {
-                        const nomChamp = parts[0].split(':')[1]?.trim();
-                        const valeurChamp = parts[1].split(':')[1]?.trim();
-
-                        if (nomChamp && valeurChamp) {
-                            if (sectionCourante.includes('Transactions')) {
-                                if (i + 1 < lignes.length) {
-                                    const ligneData = lignes[i + 1].trim();
-                                    if (ligneData && !ligneData.includes('Nom champ')) {
-                                        try {
-                                            const transaction = parserLigneTransaction(ligneData, nomChamp, valeurChamp);
-                                            if (transaction) {
-                                                transaction.id = id++;
-                                                donnees.transactions.push(transaction);
-                                            }
-                                        } catch (err) {
-                                            console.warn('Erreur parsing transaction :', err);
-                                        }
-                                    }
-                                }
-                            } else if (sectionCourante.includes('Positions ouvertes')) {
-                                if (i + 1 < lignes.length) {
-                                    const ligneData = lignes[i + 1].trim();
-                                    if (ligneData && !ligneData.includes('Nom champ')) {
-                                        try {
-                                            const position = parserLignePosition(ligneData, nomChamp, valeurChamp);
-                                            if (position) {
-                                                position.id = id++;
-                                                donnees.positions.push(position);
-                                            }
-                                        } catch (err) {
-                                            console.warn('Erreur parsing position :', err);
-                                        }
-                                    }
-                                }
-                            } else if (sectionCourante.includes('Variation des dividendes')) {
-                                if (i + 1 < lignes.length) {
-                                    const ligneData = lignes[i + 1].trim();
-                                    if (ligneData && !ligneData.includes('Nom champ')) {
-                                        try {
-                                            const dividend = parserLigneDividende(ligneData, nomChamp, valeurChamp);
-                                            if (dividend) {
-                                                dividend.id = id++;
-                                                donnees.dividends.push(dividend);
-                                            }
-                                        } catch (err) {
-                                            console.warn('Erreur parsing dividende :', err);
-                                        }
-                                    }
-                                }
+                    if (typeLigne === 'header') {
+                        if (!baseDonneesCategories[categorieCible]) {
+                            var enTete = ['Fichier Source'];
+                            for (var e = 0; e < cellules.length; e++) {
+                                enTete.push(cellules[e]);
                             }
+                            baseDonneesCategories[categorieCible] = { enTete: enTete, lignes: [] };
+                        }
+                        derniereCategorieValide = categorieCible;
+                    } else {
+                        if (!baseDonneesCategories[categorieCible]) {
+                            var enTeteDefaut = ['Fichier Source'];
+                            for (var e = 0; e < cellules.length; e++) {
+                                enTeteDefaut.push('Col ' + e);
+                            }
+                            baseDonneesCategories[categorieCible] = { enTete: enTeteDefaut, lignes: [] };
+                        }
+
+                        cellules.unshift(nomBase);
+                        
+                        for (let col = 1; col < cellules.length; col++) {
+                            cellules[col] = normaliserValeur(cellules[col]);
+                        }
+                        
+                        baseDonneesCategories[categorieCible].lignes.push(cellules);
+                        totalLignesTraitees++;
+                        
+                        if (!estUnSousTotal) {
+                            derniereCategorieValide = categorieCible;
                         }
                     }
                 }
             }
 
-            return donnees;
+            const selectCategorie = document.getElementById('selectCategorie');
+            selectCategorie.innerHTML = Object.keys(baseDonneesCategories)
+                .sort()
+                .map(cat => `<option value="${cat}">${cat}</option>`)
+                .join('');
+
+            afficherAlerte(`✅ ${totalLignesTraitees} lignes importées avec succès !`, "success");
+            console.log("✓ Données consolidées correctement");
         }
 
-        function parserLigneTransaction(ligne, categorie, devise) {
-            const parts = ligne.split(',');
-            if (parts.length < 5) return null;
+        async function afficherDonneesCategorie() {
+            const select = document.getElementById('selectCategorie');
+            const categorie = select.value;
 
-            return {
-                'Devise': devise,
-                'Catégorie d\'Actifs': categorie,
-                'Symbole': parts[0]?.trim() || '',
-                'Date': parts[1]?.trim() || '',
-                'Quantité': parseFloat(parts[3]) || 0,
-                'Montant': parseFloat(parts[4]) || 0,
-                'Frais': parseFloat(parts[5]) || 0
-            };
+            if (!baseDonneesCategories[categorie]) return;
+
+            const dataObj = baseDonneesCategories[categorie];
+            const tbody = document.getElementById('corpsTableau');
+            const thead = document.getElementById('enteteTableau');
+
+            thead.innerHTML = "<tr>" + dataObj.enTete.map(h => `<th>${h}</th>`).join('') + "</tr>";
+            tbody.innerHTML = dataObj.lignes.map(ligne => {
+                return "<tr>" + ligne.map((cellule, index) => {
+                    if(index === 0) return `<td><span class="badge primary">${cellule}</span></td>`;
+                    return `<td>${cellule || ''}</td>`;
+                }).join('') + "</tr>";
+            }).join('');
         }
 
-        function parserLignePosition(ligne, categorie, devise) {
-            const parts = ligne.split(',');
-            if (parts.length < 3) return null;
-
-            return {
-                'Devise': devise,
-                'Catégorie d\'Actifs': categorie,
-                'Symbole': parts[1]?.trim() || '',
-                'Quantité': parseFloat(parts[2]) || 0,
-                'Prix': parseFloat(parts[3]) || 0,
-                'Valeur': parseFloat(parts[4]) || 0
-            };
-        }
-
-        function parserLigneDividende(ligne, categorie, devise) {
-            const parts = ligne.split(',');
-            if (parts.length < 5) return null;
-
-            return {
-                'Devise': devise,
-                'Catégorie d\'Actifs': categorie,
-                'Symbole': parts[0]?.trim() || '',
-                'Date': parts[1]?.trim() || '',
-                'Montant': parseFloat(parts[4]) || 0
-            };
-        }
-
-        // ============ AFFICHER ALERTES ============
-        function afficherAlerte(message, type = 'info') {
-            const statut = document.getElementById('statutImport');
-            statut.textContent = message;
-            statut.className = `alert ${type}`;
-            statut.style.display = 'block';
-
-            if (type === 'success') {
-                setTimeout(() => {
-                    statut.style.display = 'none';
-                }, 4000);
-            }
-        }
-
-        // ============ EXPLORER ============
-        async function afficherExplorer() {
-            const container = document.getElementById('explorerContent');
+        async function afficherStatistiques() {
             try {
-                const transactions = await ibkrDb.obtenirTransactions();
-                container.innerHTML = `<p>Total de transactions : <strong>${transactions.length}</strong></p>`;
-            } catch (err) {
-                container.innerHTML = `<p style="color: #ef4444;">Erreur : ${err.message}</p>`;
-            }
-        }
+                const nbLignes = Object.values(baseDonneesCategories).reduce((sum, cat) => sum + cat.lignes.length, 0);
 
-        // ============ STATISTIQUES ============
-        async function afficherStats() {
-            const container = document.getElementById('statsContent');
-            try {
-                const transactions = await ibkrDb.obtenirTransactions();
-                const positions = await ibkrDb.obtenirPositions();
-                const dividends = await ibkrDb.obtenirDividendes();
+                let statsHtml = '';
+                statsHtml += `<div class="stat-item"><div class="stat-label">Total lignes</div><div class="stat-value">${nbLignes}</div></div>`;
+                statsHtml += `<div class="stat-item"><div class="stat-label">Catégories</div><div class="stat-value">${Object.keys(baseDonneesCategories).length}</div></div>`;
 
-                const html = `
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
-                        <div style="background: #e0f2fe; padding: 15px; border-radius: 8px; border-left: 4px solid #0369a1;">
-                            <div style="font-size: 12px; color: #0c4a6e; text-transform: uppercase; font-weight: 600;">Transactions</div>
-                            <div style="font-size: 24px; font-weight: 700; color: #0f172a; margin-top: 5px;">${transactions.length}</div>
-                        </div>
-                        <div style="background: #dcfce7; padding: 15px; border-radius: 8px; border-left: 4px solid #059669;">
-                            <div style="font-size: 12px; color: #15803d; text-transform: uppercase; font-weight: 600;">Positions ouvertes</div>
-                            <div style="font-size: 24px; font-weight: 700; color: #0f172a; margin-top: 5px;">${positions.length}</div>
-                        </div>
-                        <div style="background: #fef3c7; padding: 15px; border-radius: 8px; border-left: 4px solid #f59e0b;">
-                            <div style="font-size: 12px; color: #92400e; text-transform: uppercase; font-weight: 600;">Dividendes</div>
-                            <div style="font-size: 24px; font-weight: 700; color: #0f172a; margin-top: 5px;">${dividends.length}</div>
-                        </div>
-                    </div>
-                `;
-                container.innerHTML = html;
-            } catch (err) {
-                container.innerHTML = `<p style="color: #ef4444;">Erreur : ${err.message}</p>`;
-            }
-        }
+                document.getElementById('statsGrid').innerHTML = statsHtml;
 
-        // ============ DÉTAIL ACTIONS ============
-        async function afficherActionsDetail() {
-            const filterTicker = document.getElementById('filterTicker')?.value || '';
-            const container = document.getElementById('actionsDetailContent');
-            
-            try {
-                const transactions = await ibkrDb.obtenirTransactions();
-                
-                // Filtrer les actions uniquement
-                const actions = transactions.filter(t => 
-                    t['Catégorie d\'Actifs'] === 'Actions'
+                const parCategorie = Object.keys(baseDonneesCategories).map(cat => 
+                    `📊 ${cat}: ${baseDonneesCategories[cat].lignes.length} lignes`
                 );
+                document.getElementById('statsCategories').innerHTML = parCategorie.join('<br>');
+
+                document.getElementById('statsYears').innerHTML = '<p>📅 Analyse chronologique (en développement)</p>';
+
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        async function afficherRoulements() {
+            try {
+                document.getElementById('roulementsContent').innerHTML = '<p>🔄 Analyse des roulements (en développement)</p>';
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        // ============ DÉTAIL ACTIONS (NOUVEAU) ============
+        async function afficherActionsDetail() {
+            try {
+                const container = document.getElementById('actionsDetailContent');
                 
+                // Récupérer les transactions d'actions
+                const actions = baseDonneesCategories['Transactions'] ? 
+                    baseDonneesCategories['Transactions'].lignes.filter(ligne => {
+                        // Chercher la colonne "Catégorie d'Actifs" ou équivalent
+                        return ligne.toString().includes('Actions');
+                    }) : [];
+
                 if (actions.length === 0) {
-                    container.innerHTML = '<p style="color: #999;">Aucune transaction d\'action trouvée.</p>';
+                    container.innerHTML = '<p>❌ Aucune transaction d\'action trouvée.</p>';
                     return;
                 }
+
+                // Extraire les tickers uniques
+                const tickers = [...new Set(actions.map(a => a[3] || 'N/A'))].sort();
                 
-                // Récupérer les tickers uniques
-                const tickers = [...new Set(actions.map(t => t['Symbole']))].sort();
-                
-                // Remplir le select si vide
-                const selectTicker = document.getElementById('filterTicker');
-                if (selectTicker && selectTicker.children.length === 1) {
-                    tickers.forEach(ticker => {
-                        const option = document.createElement('option');
-                        option.value = ticker;
-                        option.textContent = ticker;
-                        selectTicker.appendChild(option);
-                    });
-                }
-                
-                // Filtrer par ticker si sélectionné
-                let donnees = actions;
-                if (filterTicker) {
-                    donnees = actions.filter(t => t['Symbole'] === filterTicker);
-                }
-                
+                const filterSelect = document.getElementById('filterTicker');
+                filterSelect.innerHTML = '<option value="">-- Tous les tickers --</option>' + 
+                    tickers.map(t => `<option value="${t}">${t}</option>`).join('');
+
+                // Afficher les données
+                const tickerFiltre = filterSelect.value || '';
+                const actionsFiltrees = tickerFiltre ? 
+                    actions.filter(a => a[3] === tickerFiltre) : actions;
+
+                let html = '<div class="table-container"><table>';
+                html += '<tr><th>Date</th><th>Sens</th><th>Quantité</th><th>Prix Unit.</th><th>Montant</th><th>Frais</th><th>PRU</th></tr>';
+
                 // Grouper par ticker
                 const parTicker = {};
-                donnees.forEach(t => {
-                    if (!parTicker[t['Symbole']]) {
-                        parTicker[t['Symbole']] = [];
-                    }
-                    parTicker[t['Symbole']].push(t);
+                actionsFiltrees.forEach(ligne => {
+                    const ticker = ligne[3] || 'N/A';
+                    if (!parTicker[ticker]) parTicker[ticker] = [];
+                    parTicker[ticker].push(ligne);
                 });
-                
-                // Construire le HTML
-                let html = '';
+
+                // Afficher par ticker
                 Object.keys(parTicker).sort().forEach(ticker => {
-                    const mouvements = parTicker[ticker].sort((a, b) => 
-                        new Date(b['Date']) - new Date(a['Date'])
-                    );
-                    
-                    html += `<div style="margin-top: 25px; border-top: 2px solid #e9ecef; padding-top: 15px;">
-                        <h4 style="color: #0f172a; margin-bottom: 12px;">📌 ${ticker}</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
-                            <thead>
-                                <tr style="background-color: #f1f5f9; border-bottom: 2px solid #cbd5e1;">
-                                    <th style="padding: 10px; text-align: left; font-weight: 600;">Date</th>
-                                    <th style="padding: 10px; text-align: center; font-weight: 600;">Sens</th>
-                                    <th style="padding: 10px; text-align: right; font-weight: 600;">Quantité</th>
-                                    <th style="padding: 10px; text-align: right; font-weight: 600;">Prix unitaire</th>
-                                    <th style="padding: 10px; text-align: right; font-weight: 600;">Montant</th>
-                                    <th style="padding: 10px; text-align: right; font-weight: 600;">Frais</th>
-                                    <th style="padding: 10px; text-align: right; font-weight: 600;">PRU</th>
-                                </tr>
-                            </thead>
-                            <tbody>`;
-                    
                     let totalQte = 0;
                     let totalMontant = 0;
-                    
-                    mouvements.forEach(t => {
-                        const qte = parseFloat(t['Quantité']) || 0;
-                        const montant = parseFloat(t['Montant']) || 0;
-                        const frais = parseFloat(t['Frais']) || 0;
-                        const prixUnitaire = qte !== 0 ? (montant / qte).toFixed(4) : 0;
-                        
+
+                    parTicker[ticker].sort((a, b) => new Date(a[2]) - new Date(b[2])).forEach(ligne => {
+                        const date = ligne[2] || 'N/A';
+                        const sens = (ligne[4] > 0) ? '✓ ACHAT' : '✗ VENTE';
+                        const qte = Math.abs(ligne[4]) || 0;
+                        const prix = ligne[5] || 0;
+                        const montant = (qte * prix) || 0;
+                        const frais = ligne[6] || 0;
+
                         totalQte += qte;
                         totalMontant += montant;
-                        
-                        const couleurSens = qte > 0 ? '#10b981' : '#ef4444';
-                        const sens = qte > 0 ? '✓ ACHAT' : '✗ VENTE';
-                        
-                        html += `<tr style="border-bottom: 1px solid #e9ecef; ${Math.abs(totalQte) % 2 === 0 ? 'background-color: #f8fafc;' : ''}">
-                            <td style="padding: 10px;">${t['Date'] || '-'}</td>
-                            <td style="padding: 10px; text-align: center; color: ${couleurSens}; font-weight: 600;">${sens}</td>
-                            <td style="padding: 10px; text-align: right;">${Math.abs(qte).toLocaleString('fr-FR')}</td>
-                            <td style="padding: 10px; text-align: right;">${parseFloat(prixUnitaire).toLocaleString('fr-FR', {minimumFractionDigits: 2, maximumFractionDigits: 4})}</td>
-                            <td style="padding: 10px; text-align: right;">${Math.abs(montant).toLocaleString('fr-FR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                            <td style="padding: 10px; text-align: right;">${Math.abs(frais).toLocaleString('fr-FR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                            <td style="padding: 10px; text-align: right; font-weight: 600;">${prixUnitaire}</td>
+
+                        const prixUnitaire = (montant / qte).toLocaleString('fr-FR', {minimumFractionDigits: 4, maximumFractionDigits: 4});
+
+                        html += `<tr>
+                            <td>${date}</td>
+                            <td>${sens}</td>
+                            <td>${qte.toLocaleString('fr-FR')}</td>
+                            <td>${prix.toLocaleString('fr-FR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                            <td>${montant.toLocaleString('fr-FR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                            <td>${frais.toLocaleString('fr-FR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                            <td>${prixUnitaire}</td>
                         </tr>`;
                     });
-                    
-                    // Résumé PRU
+
                     const pru = totalQte !== 0 ? (totalMontant / totalQte).toFixed(4) : 0;
                     html += `<tr style="background-color: #fef3c7; border-top: 2px solid #fcd34d; font-weight: 600;">
-                        <td colspan="2" style="padding: 10px; text-align: right;">TOTAL :</td>
-                        <td style="padding: 10px; text-align: right;">${totalQte.toLocaleString('fr-FR')}</td>
-                        <td style="padding: 10px; text-align: right;">-</td>
-                        <td style="padding: 10px; text-align: right;">${totalMontant.toLocaleString('fr-FR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                        <td style="padding: 10px; text-align: right;">-</td>
-                        <td style="padding: 10px; text-align: right; color: #b45309;">${parseFloat(pru).toLocaleString('fr-FR', {minimumFractionDigits: 2, maximumFractionDigits: 4})}</td>
+                        <td colspan="2">${ticker} TOTAL :</td>
+                        <td>${totalQte.toLocaleString('fr-FR')}</td>
+                        <td>-</td>
+                        <td>${totalMontant.toLocaleString('fr-FR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                        <td>-</td>
+                        <td style="color: #b45309;">${parseFloat(pru).toLocaleString('fr-FR', {minimumFractionDigits: 2, maximumFractionDigits: 4})}</td>
                     </tr>`;
-                    
-                    html += `</tbody>
-                        </table>
-                    </div>`;
                 });
-                
+
+                html += '</table></div>';
                 container.innerHTML = html;
-                
+
             } catch (err) {
-                console.error('Erreur affichage actions :', err);
-                container.innerHTML = `<p style="color: #ef4444;">Erreur : ${err.message}</p>`;
+                console.error('Erreur:', err);
+                document.getElementById('actionsDetailContent').innerHTML = `<p style="color: #ef4444;">Erreur : ${err.message}</p>`;
             }
         }
 
-        // ============ ROULEMENTS ============
-        async function afficherRoulements() {
-            const container = document.getElementById('roulementsContent');
-            container.innerHTML = '<p>Détection des roulements en cours...</p>';
+        async function chargerDupeDB() {
+            try {
+                afficherAlerte(`✓ Stockage local prêt`, "success");
+            } catch (err) {
+                console.error(err);
+            }
         }
 
-        // ============ MODALE SUPPRESSION ============
+        // ============ GESTION SUPPRESSION ============
         function afficherModalSupprimer() {
             document.getElementById('modalSupprimer').classList.add('show');
         }
@@ -1091,20 +1014,43 @@
             document.getElementById('modalSupprimer').classList.remove('show');
         }
 
-        async function supprimerDonnees() {
+        async function validerSuppressionDonnees() {
             try {
-                await ibkrDb.vider();
-                afficherAlerte('✓ Données supprimées avec succès', 'success');
+                baseDonneesCategories = {};
+                document.getElementById('fichiersInput').value = '';
+                document.getElementById('selectCategorie').innerHTML = '';
                 fermerModalSupprimer();
-                afficherVue('import');
+                afficherAlerte("✅ Toutes les données ont été supprimées", "success");
             } catch (err) {
-                afficherAlerte(`Erreur suppression : ${err.message}`, 'error');
+                console.error(err);
+                afficherAlerte("❌ Erreur suppression", "error");
             }
         }
 
-        // ============ STOCKAGE LOCAL (DEPRECATED) ============
-        async function chargerDupeDB() {
-            afficherAlerte('Cette fonctionnalité nécessite une implémentation personnalisée', 'info');
+        async function exporterJSON() {
+            try {
+                const dataStr = JSON.stringify(baseDonneesCategories, null, 2);
+                const dataBlob = new Blob([dataStr], { type: 'application/json' });
+                const url = URL.createObjectURL(dataBlob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `IBKR-Export-${new Date().toISOString().split('T')[0]}.json`;
+                link.click();
+                afficherAlerte("✅ Export JSON réussi", "success");
+            } catch (err) {
+                console.error(err);
+                afficherAlerte("❌ Erreur export", "error");
+            }
+        }
+
+        function toggleDebug() {
+            const enabled = document.getElementById('debugMode').checked;
+            if (enabled) console.log("🐛 Mode debug activé");
+        }
+
+        function toggleDarkMode() {
+            const enabled = document.getElementById('darkMode').checked;
+            if (enabled) console.log("🌙 Mode sombre en développement");
         }
 
         // ============ INIT ============
@@ -1114,7 +1060,7 @@
                 ibkrDb = new IBKRDatabase();
                 await ibkrDb.init();
                 console.log("✓ IndexedDB prêt");
-                console.log("✓ Parser CSV IBKR chargé");
+                console.log("✓ Parser CSV IBKR chargé (version éprouvée)");
                 afficherAlerte("ℹ️ Bienvenue en version DEV ✓", "info");
             } catch (err) {
                 console.error("❌ Erreur init :", err);
@@ -1122,7 +1068,6 @@
             }
         });
 
-        // Fermer modal en cliquant dehors
         window.addEventListener('click', (e) => {
             const modal = document.getElementById('modalSupprimer');
             if (e.target === modal) {
